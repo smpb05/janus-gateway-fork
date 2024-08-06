@@ -7275,7 +7275,8 @@ static void *janus_sip_relay_thread(void *data) {
 				JANUS_LOG(LOG_ERR, "[SIP-%s]   -- %d (%s)\n", session->account.username, error, g_strerror(error));
 				goon = FALSE;	/* Can we assume it's pretty much over, after a POLLERR? */
 				/* FIXME Simulate a "hangup" coming from the application */
-				janus_sip_hangup_media(session->handle);
+				//janus_sip_hangup_media(session->handle);
+				pollerrs = 0;
 				break;
 			} else if(fds[i].revents & POLLIN) {
 				if(pipe_fd != -1 && fds[i].fd == pipe_fd) {
